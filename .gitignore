@@ -1,3 +1,7 @@
+#Project
+books/
+5e_books_index
+prompt.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
