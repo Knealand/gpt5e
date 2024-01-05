@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from gpt5e import app
+from app import app
 
 
 load_dotenv()

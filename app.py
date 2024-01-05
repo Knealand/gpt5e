@@ -1,7 +1,7 @@
 import os
-import json
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, abort
+from flask_cors import CORS
 from langchain.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -47,7 +47,7 @@ except:
 #            API           #
 ############################
 app = Flask(__name__)
-
+CORS(app)
 def require_apikey(view_function):
     def decorated_function(*args, **kwargs):
         if request.headers.get('x-api-key') and request.headers.get('x-api-key') == VALID_API_KEY:
@@ -57,7 +57,7 @@ def require_apikey(view_function):
     return decorated_function
 
 
-@app.route('/gtp5e/question', methods=['POST'])
+@app.route('/gpt5e/question', methods=['POST'])
 @require_apikey
 def question():
     content_type = request.headers.get('Content-Type')
@@ -66,7 +66,7 @@ def question():
         try:
             body_json = request.json
             prompt = body_json['prompt']
-            prompt_template = """ """
+            prompt_template = """"""
 
             PROMPT = PromptTemplate(
                 template=prompt_template, input_variables=["context", "question"]
@@ -95,5 +95,5 @@ def question():
         return jsonify({"Error": "Bad contnent type."}), 400
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == '__main__': 
+    app.run(debug=False)
